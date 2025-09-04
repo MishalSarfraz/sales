@@ -151,6 +151,64 @@
       color: #aaa;
     }
   </style>
+
+  
+<!-- Contact Form Styles -->
+  <style>
+    .form-wrapper {
+      max-width: 500px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px 35px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .form-wrapper h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #0077cc;
+    }
+    .form-wrapper label {
+      display: block;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .form-wrapper input[type="text"],
+    .form-wrapper input[type="email"],
+    .form-wrapper textarea {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 15px;
+      resize: vertical;
+    }
+    .form-wrapper .checkbox {
+      display: flex;
+      align-items: center;
+      font-weight: normal;
+      margin-bottom: 10px;
+    }
+    .form-wrapper .checkbox input {
+      margin-right: 8px;
+    }
+    .form-wrapper button {
+      width: 100%;
+      padding: 12px;
+      background: #0077cc;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s ease;
+    }
+    .form-wrapper button:hover {
+      background: #005fa3;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -217,16 +275,38 @@
 
   </section>
 
-  <section>
-    <form action="https://formspree.io/f/xrblwopq" method="POST">
-      <h2>Contact Us</h2>
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+  
+  <div class="form-wrapper">
+    <h2>Contact Us</h2>
+    <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+      <label>
+        Name *
+        <input type="text" name="name" required>
+      </label>
+
+      <label>
+        Email *
+        <input type="email" name="email" required>
+      </label>
+
+      <label>
+        Message *
+        <textarea name="message" rows="5" required></textarea>
+      </label>
+
+      <label class="checkbox">
+        <input type="checkbox" name="whatsapp" value="yes">
+        Add me to the WhatsApp group
+      </label>
+
+      <label class="checkbox">
+        <input type="checkbox" name="email_list" value="yes">
+        Subscribe to the email list
+      </label>
+
       <button type="submit">Send Message</button>
     </form>
-  </section>
-
+  </div>
   
   <!-- Footer -->
   <footer>
@@ -272,6 +352,7 @@
 
 </body>
 </html>
+
 
 
 
