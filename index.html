@@ -1,363 +1,1107 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cats for Sale</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fefefe;
-    }
-    header {
-      background: #ffe4b5; /* Light background color */
-      padding: 40px 20px;
-      text-align: center;
-      color: white;
-    }
-    header h1 {
-      color: #444; /* Darker text for contrast */
-    }
-    header p {
-      color: #555;
-    }
-    .cat-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .cat-card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 15px;
-      text-align: center;
-      background: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .cat-card img {
-      width: 100%;
-      height: 500px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-    .price {
-      font-size: 18px;
-      color: #e91e63;
-      margin: 10px 0;
-    }
-    .download-btn {
-      display: inline-block;
-      padding: 8px 15px;
-      background: #2196f3;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
-    form {
-      max-width: 500px;
-      margin: 40px auto;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    form input, form textarea, form button {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    form button {
-      background: #4caf50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    form button:hover {
-      background: #45a049;
-    }
-     footer {
-      background-color: #1e1e1e;
-      color: #f5f5f5;
-      padding: 40px 20px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Felines Adopt a Kitten</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .footer-container {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #fff5f0, #ffe6f0);
+            color: #333;
+        }
 
-    .footer-section {
-      flex: 1 1 250px;
-      margin: 10px;
-    }
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    .footer-section h3 {
-      margin-bottom: 15px;
-      font-size: 18px;
-      border-bottom: 2px solid #f5f5f5;
-      display: inline-block;
-      padding-bottom: 5px;
-    }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .footer-section ul {
-      list-style: none;
-      padding: 0;
-    }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff6b9d;
+        }
 
-    .footer-section ul li {
-      margin-bottom: 10px;
-    }
+        nav a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
 
-    .footer-section ul li a {
-      color: #bbb;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
+        nav a:hover {
+            color: #ff6b9d;
+        }
 
-    .footer-section ul li a:hover {
-      color: #fff;
-    }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ff6b9d, #ffa07a);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
 
-    /* Social Links */
-    .social-links a {
-      display: inline-block;
-      margin-right: 10px;
-      font-size: 18px;
-      color: #bbb;
-      transition: color 0.3s;
-    }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
 
-    .social-links a:hover {
-      color: #fff;
-    }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
 
-    .footer-bottom {
-      text-align: center;
-      padding: 20px;
-      margin-top: 20px;
-      border-top: 1px solid #444;
-      font-size: 14px;
-      color: #aaa;
-    }
-  </style>
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
 
-  <!-- Contact Form Styles -->
-  <style>
-    .form-wrapper {
-      max-width: 500px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 30px 35px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    .form-wrapper h2 {
-      margin-bottom: 20px;
-      text-align: center;
-      color: #0077cc;
-    }
-    .form-wrapper label {
-      display: block;
-      margin-bottom: 15px;
-      font-weight: 600;
-    }
-    .form-wrapper input[type="text"],
-    .form-wrapper input[type="email"],
-    .form-wrapper textarea {
-      width: 100%;
-      padding: 10px 12px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 15px;
-      resize: vertical;
-    }
-    .form-wrapper .checkbox {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start; /* Aligns items to the left */
-      font-weight: normal;
-      margin-bottom: 10px;
-    }
-    .form-wrapper .checkbox input {
-      margin-right: 8px;
-      width: auto; /* Prevents stretching */
-    }
-    .form-wrapper button {
-      width: 100%;
-      padding: 12px;
-      background: #0077cc;
-      border: none;
-      color: #fff;
-      font-size: 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: background 0.3s ease;
-    }
-    .form-wrapper button:hover {
-      background: #005fa3;
-    }
-  </style>
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 1s;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            line-height: 1.2;
+        }
+
+        .hero h1 .paw-emoji {
+            display: inline-block;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(-15deg);
+            }
+
+            75% {
+                transform: rotate(15deg);
+            }
+        }
+
+        .btn {
+            background: white;
+            color: #ff6b9d;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 107, 157, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Kittens Section */
+        .kittens-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 50px;
+        }
+
+        .kittens-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .kitten-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .kitten-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .kitten-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .kitten-info {
+            padding: 20px;
+        }
+
+        .kitten-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .kitten-price {
+            background: #ffe6f0;
+            color: #ff6b9d;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 1rem;
+        }
+
+        .kitten-details {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .adopt-btn {
+            width: 100%;
+            background: #ff6b9d;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .adopt-btn:hover {
+            background: #ff4081;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 700px;
+            margin: 50px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            animation: slideDown 0.3s;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background: #f0f0f0;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .close-btn:hover {
+            background: #ddd;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .detail-icon {
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+
+        .detail-content h4 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .detail-content p {
+            color: #666;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: white;
+            padding: 60px 20px;
+        }
+
+        .contact-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #ffe6f0, #fff5f0);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Success Stories Section */
+        .success-stories {
+            background: linear-gradient(135deg, #fff5f0, #ffe6f0);
+            padding: 60px 20px;
+        }
+
+        .success-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .story-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .story-info {
+            padding: 20px;
+        }
+
+        .story-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .story-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .adopted-badge {
+            background: #4caf50;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .story-details {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .adopter-info {
+            background: #f0f8ff;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 4px solid #ff6b9d;
+        }
+
+        .adopter-info strong {
+            color: #333;
+        }
+
+        .story-date {
+            color: #999;
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+
+        /* Terms and Conditions Section */
+        .terms-section {
+            background: white;
+            padding: 60px 20px;
+        }
+
+        .terms-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .terms-box {
+            background: linear-gradient(135deg, #fff5f0, #ffe6f0);
+            border-left: 5px solid #ff6b9d;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .terms-box h3 {
+            color: #ff6b9d;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .terms-box p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .terms-list {
+            margin: 20px 0;
+            padding-left: 0;
+        }
+
+        .terms-list li {
+            background: white;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            list-style: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .terms-list li::before {
+            content: '✓';
+            background: #4caf50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .important-notice {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .important-notice h4 {
+            color: #856404;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .important-notice p {
+            color: #856404;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .no-return-box {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .no-return-box h4 {
+            color: #721c24;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .no-return-box p {
+            color: #721c24;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .location-highlight {
+            background: #d1ecf1;
+            border: 2px solid #0c5460;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .location-highlight h4 {
+            color: #0c5460;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .location-highlight p {
+            color: #0c5460;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .btn {
+                padding: 15px 35px;
+                font-size: 1rem;
+            }
+
+            .kittens-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <header>
-    <h1>🐾 Cats for Sale 🐾</h1>
-    <p>Get your new furry friend today!</p>
-  </header>
-
-  <section class="cat-list">
-    <div class="cat-card">
-      <img src="images/coffee.JPG" alt="Coffee">
-      <h3>Coffee</h3>
-      <p class="price">10,000/-Pkr</p>
-      <a href="/downloads/coffe.pdf" class="download-btn" download>Download Profile</a>
-    </div>
-
-    <div class="cat-card">
-      <img src="images/Bella.JPG" alt="bella">
-      <h3>Bella</h3>
-      <p class="price">10,000/-Pkr</p>
-      <a href="/downloads/bella.pdf" class="download-btn" download>Download Profile</a>
-    </div>
-
-    <div class="cat-card">
-      <img src="images/daisy.JPG" alt="daisy">
-      <h3>Daisy</h3>
-      <p class="price">10,000/-Pkr</p>
-      <a href="/downloads/daisy.pdf" class="download-btn" download>Download Profile</a>
-    </div>
-
-    <div class="cat-card">
-      <img src="images/jennie.JPG" alt="jenny">
-      <h3>Jenny</h3>
-      <p class="price">10,000/-Pkr</p>
-      <a href="downloads/jenny.pdf" class="download-btn" download>Download Profile</a>
-    </div>
-
-    <div class="cat-card">
-      <img src="images/milo.JPG" alt="milo">
-      <h3>Milo</h3>
-      <p class="price">10,000/-Pkr</p>
-      <a href="/downloads/milo.pdf" class="download-btn" download>Download Profile</a>
-    </div>
-
-    <div class="cat-card">
-      <img src="images/penny.JPG" alt="penny">
-      <h3>CoCo</h3>
-      <p class="price">10,000/-Pkr</p>
-      <a href="/downloads/coco.pdf" class="download-btn" download>Download Profile</a>
-    </div>
-
-    <div class="cat-card">
-      <img src="images/pookie.JPG" alt="pookie">
-      <h3>Pookie</h3>
-      <p class="price">10,000/-Pkr</p>
-      <a href="/downloads/pookie.pdf" class="download-btn" download>Download Profile</a>
-    </div>
-
-    <div class="cat-card">
-      <img src="images/tiger.JPG" alt="tiger">
-      <h3>Tiger</h3>
-      <p class="price">10,000/-Pkr</p>
-      <a href="/downloads/tiger.pdf" class="download-btn" download>Download Profile</a>
-    </div>
-
-  </section>
-
-  <div class="form-wrapper">
-    <h2>Contact Us</h2>
-    <form action="https://formspree.io/f/xrblwopq" method="POST">
-      <label>
-        Name *
-        <input type="text" name="name" required>
-      </label>
-
-      <label>
-        Email *
-        <input type="email" name="email" required>
-      </label>
-
-      <label>
-        Message *
-        <textarea name="message" rows="5" required></textarea>
-      </label>
-
-      <label class="checkbox">
-        <input type="checkbox" name="whatsapp" value="yes">
-        Add me to the WhatsApp group
-      </label>
-
-      <label class="checkbox">
-        <input type="checkbox" name="email_list" value="yes">
-        Subscribe to the email list
-      </label>
-
-      <button type="submit">Send Message</button>
-    </form>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Portfolio</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-section">
-        <h3>Contact</h3>
-        <ul>
-          <li>Email: contact@littlefelines.com</li>
-          <!--<li>Phone: +123 456 7890</li>-->
-          <li>Address: Faisalabad,Pakistan</li>
-        </ul>
-      </div>
-
-      <div class="footer-section">
-        <h3>Follow Us</h3>
-        <div class="social-links">
-          <a href="https://www.facebook.com/share/17DPpe4Lbd/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/little__felines?igsh=dXp6Zno3NDYxZ2Zt" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-          <a href="https://youtube.com/@little_felines?si=jw--KMsnAUcdhJPV" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.tiktok.com/@little.felines?_t=ZS-8yOapM8qpUN&_r=1" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                Little Felines
+            </div>
+            <nav>
+                <a href="#kittens">Kittens</a>
+                <a href="#success">Success Stories</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
-      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find Your <span class="paw-emoji">🐾</span> Purrfect Companion</h1>
+            <p>Give a loving kitten a forever home today</p>
+            <a href="#kittens" class="btn"><span>Meet Our Kittens</span></a>
+        </div>
+    </section>
+
+    <!-- Kittens Section -->
+    <section id="kittens" class="kittens-section">
+        <h2 class="section-title">Available for Adoption</h2>
+        <div class="kittens-grid" id="kittensGrid"></div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section id="success" class="success-stories">
+        <div class="success-content">
+            <h2 class="section-title">Happy Tails - Our Success Stories 🎉</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 20px;">
+                Meet the wonderful families who found their purrfect companions!
+            </p>
+            <div class="stories-grid" id="storiesGrid"></div>
+        </div>
+    </section>
+
+    <!-- Terms and Conditions Section -->
+    <section id="terms" class="terms-section">
+        <div class="terms-content">
+            <h2 class="section-title">Terms & Conditions</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 40px; font-size: 1.1rem;">
+                Please read carefully before adopting a kitten from Purrfect Paws
+            </p>
+
+            <div class="terms-box">
+                <div class="location-highlight">
+                    <h4>📍 Service Area - FAISALABAD ONLY</h4>
+                    <p><strong>IMPORTANT:</strong> Purrfect Paws adoptions are exclusively available within Faisalabad
+                        city limits. We do not provide adoption services outside of Faisalabad.</p>
+                    <p style="margin-top: 10px;">All adoptions, home visits, and follow-up services are conducted within
+                        Faisalabad, Pakistan only.</p>
+                </div>
+
+                <div class="no-return-box">
+                    <h4>⚠️ NO RETURN POLICY</h4>
+                    <p><strong>Please Note:</strong> All adoptions are FINAL. We do not accept returns under any
+                        circumstances once the adoption is completed.</p>
+                    <p style="margin-top: 10px;">We encourage potential adopters to carefully consider their decision
+                        and meet the kitten multiple times before finalizing the adoption. Our team is available to
+                        answer all questions and concerns before adoption.</p>
+                    <p style="margin-top: 10px;"><strong>Once you take a kitten home, you are committed to providing
+                            lifetime care.</strong></p>
+                </div>
+
+                <h3 style="margin-top: 30px;">💝 Your Commitment</h3>
+                <p>By adopting from Purrfect Paws, you agree to:</p>
+                <ul class="terms-list">
+                    <li>
+                        <div>Provide a loving, safe, and permanent home for your adopted kitten</div>
+                    </li>
+                    <li>
+                        <div>Cover all medical expenses including vaccinations, spaying/neutering, and emergency care
+                        </div>
+                    </li>
+                    <li>
+                        <div>Keep the kitten indoors and provide proper nutrition, exercise, and attention</div>
+                    </li>
+                    <li>
+                        <div>Contact us if any issues arise with the kitten's health within the first 7 days</div>
+                    </li>
+                    <li>
+                        <div>Never abandon, neglect, or abuse the adopted kitten</div>
+                    </li>
+                </ul>
+
+                <p style="margin-top: 30px; font-size: 1.1rem; text-align: center; color: #333;">
+                    <strong>For questions about our terms and conditions, please contact us before proceeding with
+                        adoption.</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-content">
+            <h2 class="section-title">Ready to Adopt?</h2>
+            <p style="font-size: 1.2rem; color: #666; margin-bottom: 20px;">
+                Contact us to learn more about our adoption process and meet your future furry friend!
+            </p>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>Phone</h3>
+                    <p>(+92)3217010187</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email</h3>
+                    <p>contact@littlefelines.com</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Visit Us</h3>
+                    <p>Faisalabad,Pakistan </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with ❤️ by Little Felines </p>
+        <p style="color: #999; margin-top: 10px;">© 2026 All rights reserved</p>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <img id="modalImage" class="modal-image" src="" alt="">
+            <div class="modal-body">
+                <div class="modal-header">
+                    <h2 id="modalName" style="font-size: 2.5rem; color: #333;"></h2>
+                    <button class="close-btn" onclick="closeModal()">×</button>
+                </div>
+                <div id="modalDetails"></div>
+                <button class="adopt-btn" style="margin-top: 20px;">Start Adoption Process</button>
+            </div>
+        </div>
     </div>
 
-    <div class="footer-bottom">
-      &copy; 2025 Little Felines. All rights reserved.
-    </div>
-  </footer>
+    <script>
+        // Kitten data
+        const kittens = [
+            {
+                id: 1,
+                name: "Leo",
+                age: "3 months",
+                breed: "Himalayan Siamese ",
+                personality: "Playful and curious, loves to chase toy mice",
+                health: "Dewormed",
+                fee: "Rs.10,000",
+                image: "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=400&fit=crop",
+                color: "Chocolate Brown"
+            },
+            {
+                id: 2,
+                name: "Snownie",
+                age: "3 months",
+                breed: "Persian ",
+                personality: "Gentle and affectionate, perfect lap cat",
+                health: "Dewormed",
+                fee: "Rs.10,000",
+                image: "https://images.unsplash.com/photo-1519052537078-e6302a4968d4?w=400&h=400&fit=crop",
+                color: "White"
+            },
+            {
+                id: 3,
+                name: "Jack",
+                age: "3 months",
+                breed: "Himalayan Siamese ",
+                personality: "Adventurous and energetic, loves climbing",
+                health: "Dewormed",
+                fee: "Rs.10,000",
+                image: "https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=400&h=400&fit=crop",
+                color: "Greyish White "
+            },
+            /* {
+                  id: 4,
+                  name: "Mittens",
+                  age: "5 months",
+                  breed: "Calico",
+                  personality: "Sweet and social, great with kids",
+                  health: "Fully vaccinated, spayed",
+                  fee: "$60",
+                  image: "https://images.unsplash.com/photo-1573865526739-10c1dd7aa5e0?w=400&h=400&fit=crop",
+                  color: "Calico (orange, black, white)" 
+              },
+              {
+                  id: 5,
+                  name: "Snowball",
+                  age: "3 months",
+                  breed: "White Persian Mix",
+                  personality: "Calm and cuddly, enjoys quiet time",
+                  health: "Fully vaccinated, dewormed",
+                  fee: "$80",
+                  image: "https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=400&h=400&fit=crop",
+                  color: "Pure white with blue eyes"
+              },
+              {
+                  id: 6,
+                  name: "Tiger",
+                  age: "4 months",
+                  breed: "Bengal Mix",
+                  personality: "Active and intelligent, loves puzzles",
+                  health: "Fully vaccinated, neutered",
+                  fee: "$90",
+                  image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=400&h=400&fit=crop",
+                  color: "Brown spotted tabby" 
+             }*/
+        ];
 
+        // Adopted cats data
+        const adoptedCats = [
+            {
+                id: 1,
+                name: "Bella",
+                breed: "Siamese Mix",
+                image: "https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?w=400&h=400&fit=crop",
+                adopter: "Sarah Johnson",
+                adoptionDate: "September 2025",
+                story: "Now living her best life"
+            },
+            {
+                id: 2,
+                name: "Tiger",
+                breed: "Persian ",
+                image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=400&fit=crop",
+                adopter: "Michael Chen",
+                adoptionDate: "August  2025",
+                story: "Loves his new home"
+            },
+            {
+                id: 3,
+                name: "Pookie",
+                breed: "Persian",
+                image: "https://images.unsplash.com/photo-1513245543132-31f507417b26?w=400&h=400&fit=crop",
+                adopter: "Emily Rodriguez",
+                adoptionDate: "September  2025",
+                story: "Perfect companion for a quiet home"
+            },
+            {
+                id: 4,
+                name: "Coffee",
+                breed: "Persian ",
+                image: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=400&h=400&fit=crop",
+                adopter: "David & Anna Smith",
+                adoptionDate: "September 2025",
+                story: "Gets along wonderfully"
+            },
+            {
+                id: 5,
+                name: "Daisy",
+                breed: "Himalayan Siamese ",
+                image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=400&fit=crop",
+                adopter: "Jessica Martinez",
+                adoptionDate: "August 2025",
+                story: "Thriving in her forever home, loves playing with feather toys!"
+            },
+            {
+                id: 6,
+                name: "Milo",
+                breed: "Persian ",
+                image: "https://images.unsplash.com/photo-1577023311546-cdc07a8454d9?w=400&h=400&fit=crop",
+                adopter: "Robert Williams",
+                adoptionDate: "August  2025",
+                story: "Living like royalty"
+            }
+        ];
+
+        // Render kittens
+        function renderKittens() {
+            const grid = document.getElementById('kittensGrid');
+            grid.innerHTML = '';
+
+            kittens.forEach(kitten => {
+                const card = document.createElement('div');
+                card.className = 'kitten-card';
+                card.onclick = () => openModal(kitten);
+
+                card.innerHTML = `
+                    <img src="${kitten.image}" alt="${kitten.name}" class="kitten-image">
+                    <div class="kitten-info">
+                        <div class="kitten-name">
+                            ${kitten.name}
+                            <span class="kitten-price">${kitten.fee}</span>
+                        </div>
+                        <div class="kitten-details">
+                            <p>📅 ${kitten.age} • ${kitten.breed}</p>
+                            <p style="margin-top: 10px;">${kitten.personality}</p>
+                        </div>
+                        <button class="adopt-btn">View Profile</button>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Render success stories
+        function renderSuccessStories() {
+            const grid = document.getElementById('storiesGrid');
+            grid.innerHTML = '';
+
+            adoptedCats.forEach(cat => {
+                const card = document.createElement('div');
+                card.className = 'story-card';
+
+                card.innerHTML = `
+                    <img src="${cat.image}" alt="${cat.name}" class="story-image">
+                    <div class="story-info">
+                        <div class="story-header">
+                            <div class="story-name">${cat.name}</div>
+                            <div class="adopted-badge">✓ ADOPTED</div>
+                        </div>
+                        <div class="story-details">
+                            <p><strong>Breed:</strong> ${cat.breed}</p>
+                            <p style="margin-top: 8px;">${cat.story}</p>
+                        </div>
+                        <div class="adopter-info">
+                            <p><strong>Adopted by:</strong> ${cat.adopter}</p>
+                            <p class="story-date">📅 ${cat.adoptionDate}</p>
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Open modal
+        function openModal(kitten) {
+            const modal = document.getElementById('modal');
+            const modalImage = document.getElementById('modalImage');
+            const modalName = document.getElementById('modalName');
+            const modalDetails = document.getElementById('modalDetails');
+
+            modalImage.src = kitten.image;
+            modalName.textContent = kitten.name;
+
+            modalDetails.innerHTML = `
+                <div class="detail-row">
+                    <div class="detail-icon">ℹ️</div>
+                    <div class="detail-content">
+                        <h4>Basic Info</h4>
+                        <p>${kitten.age} • ${kitten.breed}</p>
+                        <p>${kitten.color}</p>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-icon">❤️</div>
+                    <div class="detail-content">
+                        <h4>Personality</h4>
+                        <p>${kitten.personality}</p>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-icon">🏥</div>
+                    <div class="detail-content">
+                        <h4>Health Status</h4>
+                        <p>${kitten.health}</p>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-icon">💰</div>
+                    <div class="detail-content">
+                        <h4>Adoption Fee</h4>
+                        <p style="font-size: 1.5rem; font-weight: bold; color: #ff6b9d;">${kitten.fee}</p>
+                    </div>
+                </div>
+            `;
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function (event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize
+        renderKittens();
+        renderSuccessStories();
+    </script>
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
