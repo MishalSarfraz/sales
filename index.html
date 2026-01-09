@@ -37,6 +37,44 @@
             align-items: center;
         }
 
+        .menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: white;
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        display: none;
+    }
+
+    nav a {
+        padding: 15px;
+        margin: 0;
+        border-bottom: 1px solid #eee;
+        display: block;
+    }
+
+    nav.show {
+        display: block;
+    }
+}
+
+
         .logo {
             display: flex;
             align-items: center;
@@ -690,7 +728,7 @@
 
 <body>
     <!-- Header -->
-    <header>
+   <!-- <header>
         <div class="header-content">
             <div class="logo">
                 Little Felines
@@ -703,7 +741,26 @@
 
             </nav>
         </div>
-    </header>
+    </header>-->
+
+    <header>
+    <div class="header-content">
+        <div class="logo">Little Felines</div>
+
+        <!-- Hamburger Button -->
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+        <!-- Navigation -->
+        <nav id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="#kittens">Kittens</a>
+            <a href="#success">Success Stories</a>
+            <a href="contact.html">Contact</a>
+            <a href="terms.html">Terms</a>
+        </nav>
+    </div>
+</header>
+
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1104,9 +1161,17 @@
         renderKittens();
         renderSuccessStories();
     </script>
+
+    <script>
+function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+</script>
+
 </body>
 
 </html>
+
 
 
 
